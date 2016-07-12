@@ -1,5 +1,7 @@
 package org.whaka.clj;
 
+import java.util.NoSuchElementException;
+
 import clojure.java.api.Clojure;
 import clojure.lang.IFn;
 import clojure.lang.Var;
@@ -28,8 +30,28 @@ public final class UberClj {
 		require.invoke(Clojure.read(ns));
 	}
 
+	/**
+	 * Read var in the specified name-space, at the specified name
+	 */
 	public static Var var(String ns, String name) {
 		return (Var) Clojure.var(ns, name);
+	}
+
+	/**
+	 * Read and deref var
+	 */
+	public static Object value(String ns, String name) {
+		Var var = var(ns, name);
+		if (var.isBound())
+			return var(ns, name).deref();
+		throw new NoSuchElementException("No bound value found for: " + ns + "/" + name);
+	}
+
+	/**
+	 * Read var, deref it, and cast to a function
+	 */
+	public static IFn fn(String ns, String name) {
+		return (IFn) value(ns, name);
 	}
 
 	/**
