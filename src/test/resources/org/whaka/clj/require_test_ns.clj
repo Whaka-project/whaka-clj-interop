@@ -1,2 +1,2 @@
 (ns org.whaka.clj.require-test-ns)
-(def test-var 42)
+(def var42 42)

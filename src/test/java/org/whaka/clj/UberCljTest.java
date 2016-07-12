@@ -16,7 +16,7 @@ public class UberCljTest {
 	public void test_require_and_deref() {
 
 		// Before `require` is executed - deref returns an unbound var
-		IFn field = Clojure.var(REQUIRE_TEST_NS, "test-var");
+		IFn field = Clojure.var(REQUIRE_TEST_NS, "var42");
 		Object deref1 = UberClj.deref(field);
 		Assert.assertThat(deref1, Matchers.instanceOf(Var.Unbound.class));
 
