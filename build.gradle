@@ -74,13 +74,13 @@ if (hasProperty('ossrhUsername') && hasProperty('ossrhPassword')) {
 					packaging 'jar'
 					// optionally artifactId can be defined here
 					description 'Clojure interoperability tool'
-//					url 'https://github.com/Whaka-project/whakamatautau-util'
-//	  
-//					scm {
-//						connection 'scm:git:https://vantuz-subhuman@github.com/Whaka-project/whakamatautau-util.git'
-//						developerConnection 'scm:git:https://vantuz-subhuman@github.com/Whaka-project/whakamatautau-util.git'
-//						url 'https://github.com/Whaka-project/whakamatautau-util'
-//					}
+					url 'https://github.com/Whaka-project/whaka-clj-interop'
+	  
+					scm {
+						connection 'scm:git:https://vantuz-subhuman@github.com/Whaka-project/whaka-clj-interop.git'
+						developerConnection 'scm:git:https://vantuz-subhuman@github.com/Whaka-project/whaka-clj-interop.git'
+						url 'https://github.com/Whaka-project/whaka-clj-interop'
+					}
 	  
 					licenses {
 						license {
