@@ -15,10 +15,10 @@ import clojure.lang.Var;
  */
 public final class UberClj {
 
-	public static final String CORE = "clojure.core";
+	public static final String CORE_NAMESPACE = "clojure.core";
 
-	public static final IFn require = Clojure.var(CORE, "require");
-	public static final IFn deref = Clojure.var(CORE, "deref");
+	public static final IFn REQUIRE_FN = fn(CORE_NAMESPACE, "require");
+	public static final IFn DEREF_FN = fn(CORE_NAMESPACE, "deref");
 
 	private UberClj() {
 	}
@@ -27,7 +27,7 @@ public final class UberClj {
 	 * Require a name-space identified by the specified symbol
 	 */
 	public static void require(String ns) {
-		require.invoke(Clojure.read(ns));
+		REQUIRE_FN.invoke(Clojure.read(ns));
 	}
 
 	/**
@@ -60,7 +60,7 @@ public final class UberClj {
 	 * @see #deref(IFn, Class)
 	 */
 	public static Object deref(IFn val) {
-		return deref.invoke(val);
+		return DEREF_FN.invoke(val);
 	}
 
 	/**
@@ -69,6 +69,6 @@ public final class UberClj {
 	 * @see #deref(IFn)
 	 */
 	public static <T> T deref(IFn val, Class<T> type) {
-		return type.cast(deref.invoke(val));
+		return type.cast(DEREF_FN.invoke(val));
 	}
 }
