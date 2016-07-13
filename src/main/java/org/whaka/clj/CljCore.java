@@ -3,6 +3,13 @@ package org.whaka.clj;
 import clojure.java.api.Clojure;
 import clojure.lang.IFn;
 
+/**
+ * <p>Wrapper over `clojure.core` namespace.
+ * 
+ * @see #NAMESPACE
+ * @see #require(String)
+ * @see #deref(IFn)
+ */
 public final class CljCore {
 
 	/*
@@ -12,7 +19,7 @@ public final class CljCore {
 	 */
 	
 	/**
-	 * Name of the `clojure.core` name-space
+	 * Name of the `clojure.core` namespace
 	 */
 	public static final String NAME = "clojure.core";
 	
@@ -25,9 +32,9 @@ public final class CljCore {
 	public static final IFn REQUIRE_FN = UberClj.fn(NAME, "require");
 	
 	/**
-	 * The core name-space.
+	 * The core namespace.
 	 */
-	public static final CljNamespace NAMESPACE = UberClj.require("clojure.core");
+	public static final CljNamespace NAMESPACE = UberClj.require(NAME);
 	
 	/**
 	 * Function to dereference values from vars, atoms, refs, agents, etc.
@@ -40,17 +47,17 @@ public final class CljCore {
 	}
 	
 	/**
-	 * Require the name-space with the specified name.
+	 * Require the namespace with the specified name.
 	 */
 	public static void require(String ns) {
 		REQUIRE_FN.invoke(Clojure.read(ns));
 	}
 	
 	/**
-	 * Dereference specified value into an unknown type
+	 * Dereference specified value
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T deref(IFn val) {
+	public static <T> T deref(Object val) {
 		return (T) DEREF_FN.invoke(val);
 	}
 }
