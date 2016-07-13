@@ -16,20 +16,12 @@ public final class CljNamespace {
 		return UberClj.var(this.name, name);
 	}
 	
-	public Object deref(String name) {
-		return CljCore.deref(value(name, IFn.class));
+	public <T> T deref(String name) {
+		return CljCore.deref(value(name));
 	}
 	
-	public <T> T deref(String name, Class<T> type) {
-		return CljCore.deref(value(name, IFn.class), type);
-	}
-	
-	public Object value(String name) {
-		return UberClj.value(this.name, name);
-	}
-	
-	public <T> T value(String name, Class<T> type) {
-		return UberClj.value(this.name, name, type);
+	public <T> T value(String name) {
+		return UberClj.<T>value(this.name, name);
 	}
 	
 	public IFn fn(String name) {

@@ -31,6 +31,8 @@ public final class CljCore {
 	
 	/**
 	 * Function to dereference values from vars, atoms, refs, agents, etc.
+	 * 
+	 * @see #deref(IFn)
 	 */
 	public static final IFn DEREF_FN = NAMESPACE.fn("deref");
 	
@@ -46,19 +48,9 @@ public final class CljCore {
 	
 	/**
 	 * Dereference specified value into an unknown type
-	 * 
-	 * @see #deref(IFn, Class)
 	 */
-	public static Object deref(IFn val) {
-		return DEREF_FN.invoke(val);
-	}
-
-	/**
-	 * Dereference specified value and try to cast it to the type of the specified class.
-	 * 
-	 * @see #deref(IFn)
-	 */
-	public static <T> T deref(IFn val, Class<T> type) {
-		return type.cast(DEREF_FN.invoke(val));
+	@SuppressWarnings("unchecked")
+	public static <T> T deref(IFn val) {
+		return (T) DEREF_FN.invoke(val);
 	}
 }

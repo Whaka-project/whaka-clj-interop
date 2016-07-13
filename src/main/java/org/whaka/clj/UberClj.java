@@ -35,27 +35,18 @@ public final class UberClj {
 	/**
 	 * Read and deref var
 	 */
-	public static Object value(String ns, String name) {
+	@SuppressWarnings("unchecked")
+	public static <T> T value(String ns, String name) {
 		Var var = var(ns, name);
 		if (var.isBound())
-			return var(ns, name).deref();
+			return (T) var(ns, name).deref();
 		throw new NoSuchElementException("No bound value found for: " + ns + "/" + name);
 	}
 	
 	/**
-	 * Read and deref var and cast to the specified type
-	 */
-	public static <T> T value(String ns, String name, Class<T> type) {
-		Var var = var(ns, name);
-		if (var.isBound())
-			return type.cast(var(ns, name).deref());
-		throw new NoSuchElementException("No bound value found for: " + ns + "/" + name);
-	}
-
-	/**
 	 * Read var, deref it, and cast to a function
 	 */
 	public static IFn fn(String ns, String name) {
-		return (IFn) value(ns, name);
+		return UberClj.<IFn>value(ns, name);
 	}
 }

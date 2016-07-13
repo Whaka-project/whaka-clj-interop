@@ -25,7 +25,7 @@ public class UberCljTest {
 		// Function definition is loaded by `var`
 		Var var2 = UberClj.var(TEST_NS, "test-fn");
 		Assert.assertThat(var2.deref(), Matchers.instanceOf(IFn.class));
-		Assert.assertThat(CljCore.deref(var2, IFn.class).invoke(12L), Matchers.is(24L));
+		Assert.assertThat(CljCore.<IFn>deref(var2).invoke(12L), Matchers.is(24L));
 	}
 
 	@Test
