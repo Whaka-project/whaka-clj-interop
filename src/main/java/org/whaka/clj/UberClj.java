@@ -40,6 +40,8 @@ public final class UberClj {
 
 	/**
 	 * Read and deref var
+	 * 
+	 * @throws NoSuchElementException in case no such var is bound
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T value(String ns, String name) {
@@ -48,7 +50,7 @@ public final class UberClj {
 			return (T) var(ns, name).deref();
 		throw new NoSuchElementException("No bound value found for: " + ns + "/" + name);
 	}
-	
+
 	/**
 	 * <p>Read var, deref it, and cast to a function
 	 * 
@@ -57,6 +59,8 @@ public final class UberClj {
 	 * 	<code>IFn fn = UberClj.value(ns, name)</code>
 	 * </pre>
 	 * But calling `fn` is a little more readable, and preferred.
+	 * 
+	 * @throws NoSuchElementException in case no such var is bound
 	 */
 	public static IFn fn(String ns, String name) {
 		return UberClj.<IFn>value(ns, name);
