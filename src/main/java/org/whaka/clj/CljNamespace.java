@@ -17,11 +17,11 @@ public final class CljNamespace {
 	}
 	
 	public Object deref(String name) {
-		return UberClj.deref(var(name));
+		return UberClj.deref((IFn)value(name));
 	}
 	
 	public <T> T deref(String name, Class<T> type) {
-		return UberClj.deref(var(name), type);
+		return UberClj.deref((IFn)value(name), type);
 	}
 	
 	public Object value(String name) {
