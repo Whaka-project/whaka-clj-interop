@@ -1,5 +1,12 @@
 (ns org.whaka.clj.test-ns)
 
-(def test-var "qwe")
+(def test-str-qwe "qwe")
+(def test-long-42 42)
+(def test-int-42 (int 42))
+(def test-nil nil)
 
-(defn test-fn [x] (* x 2))
+(def test-ref-str-qwe (ref "qwe"))
+(def test-atom-str-qwe (atom "qwe"))
+(def test-agent-str-qwe (agent "qwe"))
+
+(defn test-fn-pow2 [x] (* x x))

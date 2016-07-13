@@ -10,28 +10,29 @@ import clojure.lang.Var;
  * <p>This class may be used as main "entry point" to the interop API.
  * 
  * @see #require(String)
- * @see #deref(IFn)
- * @see #deref(IFn, Class)
+ * @see #var(String, String)
+ * @see #value(String, String)
+ * @see #fn(String, String)
  */
 public final class UberClj {
-
-	public static final String CORE = "clojure.core";
-
-	public static final IFn require = Clojure.var(CORE, "require");
-	public static final IFn deref = Clojure.var(CORE, "deref");
 
 	private UberClj() {
 	}
 
 	/**
-	 * Require a name-space identified by the specified symbol
+	 * <p>Require a namespace identified by the specified symbol and return the name-space wrapper object.
+	 * 
+	 * @see CljNamespace
 	 */
-	public static void require(String ns) {
-		require.invoke(Clojure.read(ns));
+	public static CljNamespace require(String ns) {
+		return new CljNamespace(ns);
 	}
 
 	/**
-	 * Read var in the specified name-space, at the specified name
+	 * <p>Read var in the specified name-space, at the specified name
+	 * 
+	 * <p><b>Note:</b> that this method will return the variable itself, and not its value!
+	 * `Var` is an entity in clojure that's linked to a namespace and contains a value that change over time.
 	 */
 	public static Var var(String ns, String name) {
 		return (Var) Clojure.var(ns, name);
@@ -39,36 +40,29 @@ public final class UberClj {
 
 	/**
 	 * Read and deref var
+	 * 
+	 * @throws NoSuchElementException in case no such var is bound
 	 */
-	public static Object value(String ns, String name) {
+	@SuppressWarnings("unchecked")
+	public static <T> T value(String ns, String name) {
 		Var var = var(ns, name);
 		if (var.isBound())
-			return var(ns, name).deref();
+			return (T) var(ns, name).deref();
 		throw new NoSuchElementException("No bound value found for: " + ns + "/" + name);
 	}
 
 	/**
-	 * Read var, deref it, and cast to a function
+	 * <p>Read var, deref it, and cast to a function
+	 * 
+	 * <p><b>Note:</b> that it's actually equal to calling:
+	 * <pre>
+	 * 	<code>IFn fn = UberClj.value(ns, name)</code>
+	 * </pre>
+	 * But calling `fn` is a little more readable, and preferred.
+	 * 
+	 * @throws NoSuchElementException in case no such var is bound
 	 */
 	public static IFn fn(String ns, String name) {
-		return (IFn) value(ns, name);
-	}
-
-	/**
-	 * Dereference specified value into an unknown type
-	 * 
-	 * @see #deref(IFn, Class)
-	 */
-	public static Object deref(IFn val) {
-		return deref.invoke(val);
-	}
-
-	/**
-	 * Dereference specified value and try to cast it to the type of the specified class.
-	 * 
-	 * @see #deref(IFn)
-	 */
-	public static <T> T deref(IFn val, Class<T> type) {
-		return type.cast(deref.invoke(val));
+		return UberClj.<IFn>value(ns, name);
 	}
 }
