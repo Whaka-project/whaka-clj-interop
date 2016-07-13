@@ -17,15 +17,19 @@ public final class CljNamespace {
 	}
 	
 	public Object deref(String name) {
-		return UberClj.deref((IFn)value(name));
+		return CljCore.deref(value(name, IFn.class));
 	}
 	
 	public <T> T deref(String name, Class<T> type) {
-		return UberClj.deref((IFn)value(name), type);
+		return CljCore.deref(value(name, IFn.class), type);
 	}
 	
 	public Object value(String name) {
 		return UberClj.value(this.name, name);
+	}
+	
+	public <T> T value(String name, Class<T> type) {
+		return UberClj.value(this.name, name, type);
 	}
 	
 	public IFn fn(String name) {

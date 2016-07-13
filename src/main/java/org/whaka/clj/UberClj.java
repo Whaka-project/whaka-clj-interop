@@ -41,29 +41,21 @@ public final class UberClj {
 			return var(ns, name).deref();
 		throw new NoSuchElementException("No bound value found for: " + ns + "/" + name);
 	}
+	
+	/**
+	 * Read and deref var and cast to the specified type
+	 */
+	public static <T> T value(String ns, String name, Class<T> type) {
+		Var var = var(ns, name);
+		if (var.isBound())
+			return type.cast(var(ns, name).deref());
+		throw new NoSuchElementException("No bound value found for: " + ns + "/" + name);
+	}
 
 	/**
 	 * Read var, deref it, and cast to a function
 	 */
 	public static IFn fn(String ns, String name) {
 		return (IFn) value(ns, name);
-	}
-	
-	/**
-	 * Dereference specified value into an unknown type
-	 * 
-	 * @see #deref(IFn, Class)
-	 */
-	public static Object deref(IFn val) {
-		return CljCore.deref(val);
-	}
-
-	/**
-	 * Dereference specified value and try to cast it to the type of the specified class.
-	 * 
-	 * @see #deref(IFn)
-	 */
-	public static <T> T deref(IFn val, Class<T> type) {
-		return CljCore.deref(val, type);
 	}
 }
