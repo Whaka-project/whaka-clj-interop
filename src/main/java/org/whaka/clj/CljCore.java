@@ -8,7 +8,7 @@ import clojure.lang.IFn;
  * 
  * @see #NAMESPACE
  * @see #require(String)
- * @see #deref(IFn)
+ * @see #deref(Object)
  */
 public final class CljCore {
 
@@ -39,7 +39,7 @@ public final class CljCore {
 	/**
 	 * Function to dereference values from vars, atoms, refs, agents, etc.
 	 * 
-	 * @see #deref(IFn)
+	 * @see #deref(Object)
 	 */
 	public static final IFn DEREF_FN = NAMESPACE.fn("deref");
 	

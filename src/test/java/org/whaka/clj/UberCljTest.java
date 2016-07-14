@@ -2,6 +2,10 @@ package org.whaka.clj;
 
 import static org.whaka.clj.TestNames.*;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.hamcrest.Matchers;
@@ -9,6 +13,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import clojure.lang.IFn;
+import clojure.lang.IPersistentList;
+import clojure.lang.ISeq;
+import clojure.lang.PersistentHashMap;
+import clojure.lang.PersistentHashSet;
+import clojure.lang.PersistentVector;
 import clojure.lang.Var;
 
 public class UberCljTest {
@@ -67,5 +76,46 @@ public class UberCljTest {
 	public void test_fn_fails_on_non_function_var() {
 		UberClj.require(TEST_NS);
 		UberClj.fn(TEST_NS, STR_QWE);
+	}
+	
+	@Test
+	public void vector_factory() {
+		PersistentVector vector = UberClj.vector(1,2,3,4,4,5,5);
+		Assert.assertThat(vector, Matchers.is(Arrays.asList(1,2,3,4,4,5,5)));
+	}
+	
+	@Test
+	public void list_factory() {
+		IPersistentList list = UberClj.list(1,2,3,4,4,5,5);
+		Assert.assertThat(list, Matchers.is(Arrays.asList(1,2,3,4,4,5,5)));
+	}
+	
+	@Test
+	public void set_factory() {
+		PersistentHashSet set = UberClj.set(1,2,3,4,4,5,5);
+		Assert.assertThat(set, Matchers.is(new HashSet<>(Arrays.asList(1,2,3,4,5))));
+	}
+	
+	@Test
+	public void map_factory() {
+		PersistentHashMap map = UberClj.map(1,2, 3,4, 4,5, 5,5);
+		Map<Integer, Integer> expected = new HashMap<Integer,Integer>() {{
+			put(1, 2);
+			put(3, 4);
+			put(4, 5);
+			put(5, 5);
+		}};
+		Assert.assertThat(map, Matchers.is(expected));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void map_factory_throws_exception_on_uneven_elements() {
+		UberClj.map(1,2,3);
+	}
+	
+	@Test
+	public void seq_factory() {
+		ISeq seq = UberClj.seq(1,2,3,4,4,5,5);
+		Assert.assertThat(seq, Matchers.is(Arrays.asList(1,2,3,4,4,5,5)));
 	}
 }
