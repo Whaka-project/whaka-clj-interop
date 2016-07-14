@@ -75,6 +75,30 @@ public final class UberClj {
 	}
 	
 	/**
+	 * Call function identified by the specified name with specified arguments.
+	 * 
+	 * @throws NoSuchElementException in case no such var is bound
+	 * 
+	 * @see #call(String, String, Collection)
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> T call(String ns, String name, Object... args) {
+		return (T) fn(ns, name).applyTo(seq(args));
+	}
+	
+	/**
+	 * Call function identified by the specified name with specified arguments.
+	 * 
+	 * @throws NoSuchElementException in case no such var is bound
+	 * 
+	 * @see #call(String, String, Object...)
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> T call(String ns, String name, Collection<?> args) {
+		return (T) fn(ns, name).applyTo(seq(args));
+	}
+	
+	/**
 	 * Create a persistent vector from the specified elements
 	 * 
 	 * @see #vector(Collection)

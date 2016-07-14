@@ -1,12 +1,12 @@
 package org.whaka.clj;
 
+import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 import clojure.lang.IFn;
-import clojure.lang.PersistentVector;
 import clojure.lang.Var;
 
 /**
@@ -37,9 +37,9 @@ import clojure.lang.Var;
  * <pre>
  * 	Ref ref = ns.value("str-ref-var");
  * 	String str = (String) ref.deref();
- *  
+ * 
  * 	// The same as:
- *  
+ * 
  * 	String str = ns.deref("str-ref-var");
  * </pre>
  * 
@@ -137,10 +137,22 @@ public final class CljNamespace {
 	 * Call function identified by the specified name with specified arguments.
 	 * 
 	 * @throws NoSuchElementException in case no such var is bound
+	 * 
+	 * @see #call(String, Collection)
 	 */
-	@SuppressWarnings("unchecked")
 	public <T> T call(String name, Object... args) {
-		return (T) fn(name).applyTo(PersistentVector.create(args).seq());
+		return UberClj.call(this.name, name, args);
+	}
+	
+	/**
+	 * Call function identified by the specified name with specified arguments.
+	 * 
+	 * @throws NoSuchElementException in case no such var is bound
+	 * 
+	 * @see #call(String, String, Object...)
+	 */
+	public <T> T call(String name, Collection<?> args) {
+		return UberClj.call(this.name, name, args);
 	}
 
 	/**
