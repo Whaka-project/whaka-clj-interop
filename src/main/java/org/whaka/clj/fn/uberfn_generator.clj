@@ -22,7 +22,7 @@
   (str "return (T) invoke" (ifn-call-arglist arity) ";"))
 
 (defn generic-ifn-method [arity]
-  {:jelement :method
+  {:jenerate :method
    :default true
    :generics ['T]
    :return 'T
@@ -36,7 +36,7 @@
        (map generic-ifn-method)))
     
 (def generic-ifn-interface
-  {:jelement :interface
+  {:jenerate :interface
    :package package
    :name "GenericIFn"
    :extends [clojure.lang.IFn]
