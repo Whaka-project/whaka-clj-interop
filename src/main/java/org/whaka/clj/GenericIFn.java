@@ -4,7 +4,11 @@ import clojure.lang.IFn;
 import clojure.lang.ISeq;
 
 public interface GenericIFn extends IFn {
-	
+
+	static GenericIFn wrap(IFn fn) {
+		return new GenericIFnWrapper(fn);
+	}
+
 	@SuppressWarnings("unchecked")
 	default <T> T _invoke() {
 		return (T) invoke();
