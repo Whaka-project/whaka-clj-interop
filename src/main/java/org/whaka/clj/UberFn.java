@@ -1,11 +1,11 @@
 package org.whaka.clj;
 
+import clojure.lang.AFn;
+import clojure.lang.PersistentVector;
+
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
-import clojure.lang.AFn;
-import clojure.lang.PersistentVector;
 
 /**
  * <p>This class allows you to build a clojure function using java lambdas.
@@ -59,7 +59,7 @@ import clojure.lang.PersistentVector;
  * @see #on(int, Object)
  * @see #withSelf(Function)
  */
-@SuppressWarnings({"hiding", "TypeParameterHidesVisibleType", "WeakerAccess"})
+@SuppressWarnings({"hiding", "TypeParameterHidesVisibleType", "WeakerAccess", "unused"})
 public final class UberFn extends AFn implements GenericIFn {
 
 	private static final UberFn EMPTY = new UberFn();
@@ -148,7 +148,7 @@ public final class UberFn extends AFn implements GenericIFn {
 	 * @see #on2(BiFunction)
 	 * @see #on3(F3)
 	 */
-	public <Z> UberFn on0(Supplier<Z> f) {
+	public UberFn on0(Supplier<?> f) {
 		return createNewFn(0, f);
 	}
 
@@ -174,7 +174,7 @@ public final class UberFn extends AFn implements GenericIFn {
 	 * @see #on2(BiFunction)
 	 * @see #on3(F3)
 	 */
-	public <A,Z> UberFn on1(Function<A,Z> f) {
+	public <A> UberFn on1(Function<A,?> f) {
 		return createNewFn(1, f);
 	}
 
@@ -200,7 +200,7 @@ public final class UberFn extends AFn implements GenericIFn {
 	 * @see #on1(Function)
 	 * @see #on3(F3)
 	 */
-	public <A,B,Z> UberFn on2(BiFunction<A,B,Z> f) {
+	public <A,B> UberFn on2(BiFunction<A,B,?> f) {
 		return createNewFn(2, f);
 	}
 
@@ -228,133 +228,133 @@ public final class UberFn extends AFn implements GenericIFn {
 	 * @see #on1(Function)
 	 * @see #on4(F4)
 	 */
-	public <A,B,C,Z> UberFn on3(F3<A,B,C,Z> f) {
+	public <A,B,C> UberFn on3(F3<A,B,C,?> f) {
 		return createNewFn(3, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,Z> UberFn on4(F4<A,B,C,D,Z> f) {
+	public <A,B,C,D> UberFn on4(F4<A,B,C,D,?> f) {
 		return createNewFn(4, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,Z> UberFn on5(F5<A,B,C,D,E,Z> f) {
+	public <A,B,C,D,E> UberFn on5(F5<A,B,C,D,E,?> f) {
 		return createNewFn(5, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,Z> UberFn on6(F6<A,B,C,D,E,F,Z> f) {
+	public <A,B,C,D,E,F> UberFn on6(F6<A,B,C,D,E,F,?> f) {
 		return createNewFn(6, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,Z> UberFn on7(F7<A,B,C,D,E,F,G,Z> f) {
+	public <A,B,C,D,E,F,G> UberFn on7(F7<A,B,C,D,E,F,G,?> f) {
 		return createNewFn(7, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,Z> UberFn on8(F8<A,B,C,D,E,F,G,H,Z> f) {
+	public <A,B,C,D,E,F,G,H> UberFn on8(F8<A,B,C,D,E,F,G,H,?> f) {
 		return createNewFn(8, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,Z> UberFn on9(F9<A,B,C,D,E,F,G,H,I,Z> f) {
+	public <A,B,C,D,E,F,G,H,I> UberFn on9(F9<A,B,C,D,E,F,G,H,I,?> f) {
 		return createNewFn(9, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,Z> UberFn on10(F10<A,B,C,D,E,F,G,H,I,J,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J> UberFn on10(F10<A,B,C,D,E,F,G,H,I,J,?> f) {
 		return createNewFn(10, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,Z> UberFn on11(F11<A,B,C,D,E,F,G,H,I,J,K,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K> UberFn on11(F11<A,B,C,D,E,F,G,H,I,J,K,?> f) {
 		return createNewFn(11, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,Z> UberFn on12(F12<A,B,C,D,E,F,G,H,I,J,K,L,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L> UberFn on12(F12<A,B,C,D,E,F,G,H,I,J,K,L,?> f) {
 		return createNewFn(12, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,M,Z> UberFn on13(F13<A,B,C,D,E,F,G,H,I,J,K,L,M,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L,M> UberFn on13(F13<A,B,C,D,E,F,G,H,I,J,K,L,M,?> f) {
 		return createNewFn(13, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,Z> UberFn on14(F14<A,B,C,D,E,F,G,H,I,J,K,L,M,N,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N> UberFn on14(F14<A,B,C,D,E,F,G,H,I,J,K,L,M,N,?> f) {
 		return createNewFn(14, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,Z> UberFn on15(F15<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O> UberFn on15(F15<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,?> f) {
 		return createNewFn(15, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Z> UberFn on16(F16<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P> UberFn on16(F16<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,?> f) {
 		return createNewFn(16, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,Z> UberFn on17(F17<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q> UberFn on17(F17<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,?> f) {
 		return createNewFn(17, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,Z> UberFn on18(F18<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R> UberFn on18(F18<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,?> f) {
 		return createNewFn(18, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,Z> UberFn on19(F19<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S> UberFn on19(F19<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,?> f) {
 		return createNewFn(19, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,Z> UberFn on20(F20<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T> UberFn on20(F20<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,?> f) {
 		return createNewFn(20, f);
 	}
 
 	/**
 	 * @see #on3(F3)
 	 */
-	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,Z> UberFn on21(F21<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,Z> f) {
+	public <A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U> UberFn on21(F21<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,?> f) {
 		return createNewFn(21, f);
 	}
 
@@ -379,6 +379,11 @@ public final class UberFn extends AFn implements GenericIFn {
 			throw new IllegalArgumentException(
 				String.format("For arity [%d] expected function of type: %s", arity, expectedFunctionType));
 		return createNewFn(arity, function);
+	}
+
+	public boolean hasArity(int arity) {
+		getExpectedFunctionType(arity);
+		return impls[arity] != null;
 	}
 
 	private static Class<?> getExpectedFunctionType(int arity) {
