@@ -1,4 +1,4 @@
-(ns org.whaka.clj.test-ns)
+(ns com.vsubhuman.clj.test-ns)
 
 (def test-str-qwe "qwe")
 (def test-long-42 42)

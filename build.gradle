@@ -2,8 +2,8 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-group = 'org.whaka'
-archivesBaseName = "whaka-clj-interop"
+group = 'com.vsubhuman'
+archivesBaseName = "clj-interop"
 version = '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -74,12 +74,12 @@ if (hasProperty('ossrhUsername') && hasProperty('ossrhPassword')) {
 					packaging 'jar'
 					// optionally artifactId can be defined here
 					description 'Clojure interoperability tool'
-					url 'https://github.com/Whaka-project/whaka-clj-interop'
+					url 'https://github.com/vantuz-subhuman/clj-interop'
 	  
 					scm {
-						connection 'scm:git:https://vantuz-subhuman@github.com/Whaka-project/whaka-clj-interop.git'
-						developerConnection 'scm:git:https://vantuz-subhuman@github.com/Whaka-project/whaka-clj-interop.git'
-						url 'https://github.com/Whaka-project/whaka-clj-interop'
+						connection 'scm:git:https://vantuz-subhuman@github.com/vantuz-subhuman/clj-interop.git'
+						developerConnection 'scm:git:https://vantuz-subhuman@github.com/vantuz-subhuman/clj-interop.git'
+						url 'https://github.com/vantuz-subhuman/clj-interop'
 					}
 	  
 					licenses {
@@ -90,18 +90,12 @@ if (hasProperty('ossrhUsername') && hasProperty('ossrhPassword')) {
 						}
 					}
 					
-					organization {
-						name 'Whaka-project'
-						url 'https://github.com/Whaka-project'
-					}
-	  
 					developers {
 						developer {
 							id 'vantuz-subhuman'
 							name 'Vantuz Subhuman'
 							email 'vantuz-subhuman@yandex.ru'
 							url 'https://github.com/vantuz-subhuman'
-							organization 'Whaka-project'
 						}
 					}
 				}

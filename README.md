@@ -5,7 +5,7 @@ Clojure interoperability tool.
 An API to usabilitilize (Is it a word? We can make it one! We have the technology!) working with Java-Clojure interop.
 
 ## Examples
-### org.whaka.clj.CljCore
+### com.vsubhuman.clj.CljCore
 Functions `require` and `deref` are available statically in this class:
 ```
 CljCore.require("my.namespace");
@@ -19,7 +19,7 @@ Long longValue = CljCore.deref(longVar);
 (!) Note: that method `deref` provides `weak` generics that allow you to assign result to any type,
 but you will get `ClassCastException` in case the type is incompatible.
 
-### org.whaka.clj.UberClj
+### com.vsubhuman.clj.UberClj
 Loading vars and then dereferencing them is quite tedious, so of course there's a better way:
 ```
 CljCore.require("my.namespace");
