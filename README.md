@@ -52,10 +52,10 @@ Long sum = UberClj.call("clojure.core", "+", 10, 20, 30);
 ```
 
 ## Kanban
-https://waffle.io/Whaka-project/whaka-clj-interop/join
+https://waffle.io/vantuz-subhuman/clj-interop/join
 
 ## CI
-https://travis-ci.org/Whaka-project/whaka-clj-interop/pull_requests
+https://travis-ci.org/vantuz-subhuman/clj-interop/pull_requests
 
 ## Clojure ki te mate!
 <img src="http://i.imgur.com/CR3RFUl.jpg" width="400" alt="Whaka!" />
