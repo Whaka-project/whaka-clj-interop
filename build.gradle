@@ -16,7 +16,7 @@ dependencies {
 	def clojure = 'org.clojure:clojure:1.8.0'
     compileOnly clojure
 	testCompile clojure
-	
+
 	testCompile 'junit:junit:4.12'
 	testCompile 'org.hamcrest:hamcrest-library:1.3'
 }
